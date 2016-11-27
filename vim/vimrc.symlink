@@ -35,6 +35,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rizzatti/dash.vim'
 
 "Plugins must be added before the following line
 call vundle#end()            " required
