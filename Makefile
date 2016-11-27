@@ -5,11 +5,17 @@ dotfiles = $(HOME)/.dotfiles
 vimrc = $(HOME)/.vimrc
 
 def:
-	rm -rf $(vim_bundle_dir)
+	whoami
+	rm -rf $(vim_bundle_dir)	
+	@cp $(root_dir)/colors/candy.vim ~/.vim/colors/candy.vim
+	@cp $(root_dir)/vim/agignore ~/.agignore 
 	$(root_dir)/scripts/symlink_dotfiles
 	mkdir -p $(vim_bundle_dir)
 	git clone http://github.com/gmarik/vundle.git $(vundle)
 	vim +BundleInstall! +BundleClean +qall
 
-profile:
-	cd ./bash && ./init && cd ../
+
+
+
+
+
