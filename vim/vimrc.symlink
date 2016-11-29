@@ -1,4 +1,4 @@
-set nocompatible " must be first line (r) 
+set nocompatible " must be first line (r)
 filetype on
 filetype off                  " required
 syntax on
@@ -14,8 +14,9 @@ set shiftwidth=2
 set softtabstop=2
 
 " Vundle Bundle "
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+" call vundle#begin() ""
 " arg for begin() will let you pass a path where Vundle should install plugins
 " call vundle#begin('~/some/path/here')
 
@@ -69,9 +70,7 @@ set linespace=0                 " No extra spaces between rows
 hi CursorLine   guibg=#333333
 hi LineNr       guifg=#555555
 
-set number                      " Show current line number
-set relativenumber              " Show relative line numbers
-    
+
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
@@ -80,7 +79,7 @@ set softtabstop=4               " Let backspace delete indent
 "-------------------------------------------------------------------------------
 "" Plugin Settings
 "-------------------------------------------------------------------------------
-" JS 
+" JS
 let g:javascript_plugin_flow = 1
 
 " JSX
@@ -117,6 +116,7 @@ map <leader>r :NERDTreeFind<cr>
 
 " Auto Commands"
 au VimEnter * NERDTree | wincmd p
+set number
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif " Always switch to the current file directory 
+autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif " Always switch to the current file directory
