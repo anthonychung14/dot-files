@@ -16,7 +16,7 @@ set softtabstop=2
 " Vundle Bundle "
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
-" call vundle#begin() ""
+" call vundle#begin()
 " arg for begin() will let you pass a path where Vundle should install plugins
 " call vundle#begin('~/some/path/here')
 
@@ -37,9 +37,9 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rizzatti/dash.vim'
+Plugin 'tpope/vim-surround'
 
 "Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
@@ -53,6 +53,7 @@ set nowritebackup
 set noswapfile
 scriptencoding utf-8
 
+
 " this would make any ! scripts run in the directory of the buffer
 
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
@@ -61,6 +62,7 @@ set virtualedit=onemore             " Allow for cursor beyond last character
 set history=1000                    " Store a ton of history (default is 20)
 set hidden                          " Allow buffer switching without saving
 
+hi Search cterm=NONE ctermfg=grey ctermbg=red
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " VIM UI "
@@ -82,9 +84,33 @@ set softtabstop=4               " Let backspace delete indent
 " JS
 let g:javascript_plugin_flow = 1
 
-" JSX
+
+" ESLINT
+let g:syntastic_javascript_checkers = ['eslint', 'flow', 'jshint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+let g:syntastic_error_symbol = '👺 '
+let g:syntastic_style_error_symbol = '⁉️ '
+let g:syntastic_warning_symbol = '⚠️ '
+let g:syntastic_style_warning_symbol = '💩 '
 let g:jsx_ext_required = 0
+
+" HOT RELOADING
+set backupcopy=yes
 
 " delimitMat
 let delimitMate_quotes = "\" \'"
@@ -113,6 +139,7 @@ endif
 
 " Mappings
 map <leader>r :NERDTreeFind<cr>
+nnoremap K :grep! -A 2 "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Auto Commands"
 au VimEnter * NERDTree | wincmd p
@@ -120,3 +147,6 @@ set number
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif " Always switch to the current file directory
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufWritePre *.js %s/\s\+$//e
+
