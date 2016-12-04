@@ -1,6 +1,5 @@
 #!/bin/sh
 
-echo "hi 1"
 DOTFILES_ROOT="`pwd`"
 
 link_files () {
@@ -9,9 +8,7 @@ link_files () {
   echo "linked $1 to $2"
 }
 
-echo "hi 2"
 for source in `find $DOTFILES_ROOT -maxdepth 2 -name \*.symlink`
-echo "hi 3"
 do
   echo "hi 4"
   dest="$HOME/.`basename \"${source%.*}\"`"
