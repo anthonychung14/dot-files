@@ -1,0 +1,10 @@
+<snippet>
+    <content>
+<![CDATA[
+import ${1:thing} from '${2:package}';
+]]>
+    </content>
+    <tabTrigger>im</tabTrigger>
+    <description>Import from another file</description>
+    <scope>source.js</scope>
+</snippet>

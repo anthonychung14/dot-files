@@ -1,0 +1,24 @@
+<snippet>
+    <content><![CDATA[
+function* ${1:name} (${2:action}) {
+    try {
+        const ${3:result} = yield call(${4:api});
+
+        yield put({
+            type: ${5: actionType},
+            payload: ${3:result}
+        })
+
+    } catch (error) {
+
+        yield put({
+            type: ${5: actionType},
+            payload: error
+        });
+    }
+}
+]]></content>
+    <tabTrigger>wosa</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

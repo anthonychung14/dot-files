@@ -1,0 +1,10 @@
+<snippet>
+    <content>
+<![CDATA[
+import { ${1:thing} } from 'shared/${2:folder}';
+]]>
+    </content>
+    <tabTrigger>iish</tabTrigger>
+    <description>Import from another file</description>
+    <scope>source.js</scope>
+</snippet>

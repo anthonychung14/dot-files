@@ -1,0 +1,12 @@
+<snippet>
+    <content>
+<![CDATA[
+export const ${1:actionSelector} = ({ type, payload }) => (
+    type === ${2:actionType}
+);
+]]>
+    </content>
+    <tabTrigger>as</tabTrigger>
+    <description>action selector</description>
+    <scope>source.js</scope>
+</snippet>
